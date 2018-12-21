@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: super-oauth2
+  datasource:
+    url: jdbc:mysql://localhost:3306/superrecarga
+    username: super
+    password: superrecarga
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      pool-name: superPoolOaut
+      max-lifetime: 18000000
+      connection-timeout: 30000
+      auto-commit: false
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        format_sql: false
+    open-in-view: false
+
+security:
+  oauth2:
+    client:
+      scope: read,write
+      client-id: acd167f6-04f8-4306-a118-03e2356f73aa
+      client-secret: 2dd4bec5-fe62-4568-94a1-c31ac3c4eb4e
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

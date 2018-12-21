@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - changeSet:
+      id: mvp_sp1_001
+      author: gabo.paz
+      comments: initial change
