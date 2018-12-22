@@ -28,9 +28,9 @@ spring:
 security:
   oauth2:
     client:
-      scope: read,write
-      client-id: acd167f6-04f8-4306-a118-03e2356f73aa
-      client-secret: 2dd4bec5-fe62-4568-94a1-c31ac3c4eb4e
+#      scope: read,write
+      client-id: fb1d363d-ed3d-4ee4-a5a3-3b9a44e112f6
+      client-secret: 1769a946-90c2-430f-843d-cc9649721225
 
 logging:
   level:
