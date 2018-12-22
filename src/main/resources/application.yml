@@ -2,7 +2,7 @@ spring:
   application:
     name: super-oauth2
   datasource:
-    url: jdbc:mysql://localhost:3306/superrecarga
+    url: jdbc:mysql://localhost:3306/superrecarga?serverTimezone=UTC
     username: super
     password: superrecarga
     hikari:
@@ -31,6 +31,9 @@ security:
 #      scope: read,write
       client-id: fb1d363d-ed3d-4ee4-a5a3-3b9a44e112f6
       client-secret: 1769a946-90c2-430f-843d-cc9649721225
+    authorization:
+      jwt:
+        key-value:
 
 logging:
   level:
