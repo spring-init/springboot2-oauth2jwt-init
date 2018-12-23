@@ -2,6 +2,7 @@ package borrameref.demo.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -11,6 +12,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -49,15 +51,19 @@ public class AuthorizationServerConfig {
 
                 Map<String, Object> info = new LinkedHashMap<String, Object>(accessToken.getAdditionalInformation());
 
-                info.put("role",user.getAuthorities().iterator().next());
-                info.put("expired",user.isAccountNonExpired());
+                info.put("Nonexpired",user.isAccountNonExpired());
+                info.remove("authorities");
 
                 DefaultOAuth2AccessToken customAccessToken = new DefaultOAuth2AccessToken(accessToken);
                 customAccessToken.setAdditionalInformation(info);
                 return super.enhance(customAccessToken, authentication);
             }
         };
-        converter.setSigningKey("123");
+        //converter.setSigningKey("123");
+        KeyStoreKeyFactory keyStoreKeyFactory =
+                new KeyStoreKeyFactory(new ClassPathResource("/oauthSR.jks"), "oauthSRecargaS".toCharArray());
+//        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("oauthSRecKeyPair"));
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("oauthSRecKeyPair", "oauthSRecargaK".toCharArray()));
         return converter;
     }
 }
